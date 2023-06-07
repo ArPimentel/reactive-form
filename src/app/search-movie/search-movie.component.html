@@ -1,0 +1,65 @@
+<body>
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <div formGroupName="identifierGroup" class="form-group">
+      <label for="identifier">ID</label>
+      <input type="text" id="identifier" formControlName="identifier" />
+      <div
+        *ngIf="searchForm.get('identifierGroup.identifier')?.errors?.['required']"
+        class="error-message"
+      >
+        ID is required
+      </div>
+    </div>
+
+    <div formGroupName="titleGroup" class="form-group">
+      <label for="title">Title</label>
+      <input type="text" id="title" formControlName="title" />
+      <div
+        *ngIf="searchForm.get('titleGroup.title')?.errors?.['required']"
+        class="error-message"
+      >
+        Title is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="type">Type</label>
+      <select id="type" formControlName="type">
+        <option value="film">Film</option>
+        <option value="series">Series</option>
+        <option value="episode">Episode</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="releaseYear">Release Year</label>
+      <select id="releaseYear" formControlName="releaseYear">
+        <option *ngFor="let year of releaseYears" [value]="year">
+          {{ year }}
+        </option>
+      </select>
+      <div
+        *ngIf="searchForm.get('releaseYear')?.errors?.['required']"
+        class="error-message"
+      >
+        Release year is required
+      </div>
+      <div
+        *ngIf="searchForm.get('releaseYear')?.errors?.['min'] || searchForm.get('releaseYear')?.errors?.['max']"
+        class="error-message"
+      >
+        The year must be between {{ getMinYear() }} and {{ getCurrentYear() }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="fiche">Form</label>
+      <select id="fiche" formControlName="fiche">
+        <option value="complete">Complete</option>
+        <option value="short">Short</option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="searchForm.invalid">Search</button>
+  </form>
+</body>
