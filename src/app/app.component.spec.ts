@@ -12,16 +12,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'taskKiller'`, () => {
+  it(`should have as title 'SearchMovie'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('taskKiller');
+    expect(app.title).toEqual('SearchMovie');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('taskKiller app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('SearchMovie app is running!');
   });
 });
